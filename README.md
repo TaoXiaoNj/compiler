@@ -1,2 +1,2 @@
 # compiler
-Codes for compiling my own codes
+Codes for compiling my own languages
