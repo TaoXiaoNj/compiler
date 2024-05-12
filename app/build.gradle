@@ -8,6 +8,7 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+    id 'antlr'
 }
 
 repositories {
@@ -16,6 +17,12 @@ repositories {
 }
 
 dependencies {
+    // 用它来执行  antlr 相关的任务
+    antlr 'org.antlr:antlr4:4.13.0'
+
+    // 它是  Antlr 代码的运行时依赖
+    implementation 'org.antlr:antlr4-runtime:4.13.0'
+
     // Use JUnit Jupiter for testing.
     testImplementation libs.junit.jupiter
 
@@ -24,6 +31,19 @@ dependencies {
     // This dependency is used by the application.
     implementation libs.guava
 }
+
+
+/**
+ * 默认情况下，antlr 插件不会自动产生 visitor 处理模式的框架。<p>
+ * 所以，才需要增加如下的配置。<p>
+ *
+ * 参考 https://docs.gradle.org/current/userguide/antlr_plugin.html#sec:controlling_the_antlr_generator_process
+ * */
+generateGrammarSource {
+    maxHeapSize = "128m"
+    arguments += ["-visitor", "-long-messages"]
+}
+
 
 // Apply a specific Java toolchain to ease working on different environments.
 java {
