@@ -9,13 +9,12 @@ import org.antlr.v4.runtime.tree.ParseTree;
 @Slf4j
 public class ParserTreeRenderer {
 	public static void main(String[] args) {
-		CharStream input = CharStreams.fromString("{1, 2, {3, 4}}");
+		CharStream input = CharStreams.fromString("{1, 2, {3}}");
 		ArrayInitLexer lexer = new ArrayInitLexer(input);
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
 		ArrayInitParser parser = new ArrayInitParser(tokens);
 
 		ParseTree tree = parser.init();
-
 		log.info("渲染parse tree: {}", tree.toStringTree(parser));
 	}
 }
