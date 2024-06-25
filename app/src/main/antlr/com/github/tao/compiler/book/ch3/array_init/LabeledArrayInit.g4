@@ -12,6 +12,6 @@ WS: [ \t\r\n]+ -> skip;
 // 与 ArrayInit 文法定义完全一样，只是这里给 element 的 candidates 增加了 label
 init: '{' element (',' element)* '}' ;
 
-element: INT        # intElement
-     | init         # initElement
+element: INT        # intCandidate
+     | init         # initCandidate
      ;

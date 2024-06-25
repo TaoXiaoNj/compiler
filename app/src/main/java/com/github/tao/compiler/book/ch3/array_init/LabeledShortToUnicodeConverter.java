@@ -27,7 +27,7 @@ public class LabeledShortToUnicodeConverter {
 
 	/**
 	 * 与 {@link ShortToUnicodeConverter.ShortToUnicodeListener} 几乎完全一样，
-	 * 只是本类扩展了 {@link LabeledArrayInitBaseListener}，因此需要重写 {@link LabeledShortToUnicodeListener#enterIntElement}
+	 * 只是本类扩展了 {@link LabeledArrayInitBaseListener}，因此需要重写 {@link LabeledShortToUnicodeListener#enterIntCandidate}
 	 * 方法。
 	 * */
 	public static class LabeledShortToUnicodeListener extends LabeledArrayInitBaseListener {
@@ -39,7 +39,7 @@ public class LabeledShortToUnicodeConverter {
 		}
 
 		@Override
-		public void enterIntElement(LabeledArrayInitParser.IntElementContext ctx) {
+		public void enterIntCandidate(LabeledArrayInitParser.IntCandidateContext ctx) {
 			String textValue = ctx.INT().getText();
 			Integer intValue = Integer.valueOf(textValue);
 
