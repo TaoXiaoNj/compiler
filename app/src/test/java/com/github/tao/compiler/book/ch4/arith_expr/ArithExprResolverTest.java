@@ -16,8 +16,7 @@ class ArithExprResolverTest {
 				Arguments.of("1+3*2\n", 7),
 				Arguments.of("(1+2)*3\n", 9),
 				Arguments.of("(6+6)/(12-10)\n", 6),
-				Arguments.of("5+0-(12%10-1)\n", 4),
-				Arguments.of("(6+6)/(12-10)\n193\n(1+2)*3", 9)
+				Arguments.of("5+0-(12%10-1)\n", 4)
 		);
 	}
 

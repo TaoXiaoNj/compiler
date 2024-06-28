@@ -12,7 +12,7 @@ public class ArithExprResolver {
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
 		ArithExprParser parser = new ArithExprParser(tokens);
 
-		ParseTree parseTree = parser.prog();
+		ParseTree parseTree = parser.stmt();
 		ArithExprVisitor visitor = new ArithExprVisitor();
 
 		return visitor.visit(parseTree);
@@ -23,14 +23,6 @@ public class ArithExprResolver {
 	 * Visitor 实现，在访问每个规则节点时，它都可以得到一个返回值。
 	 * */
 	public static class ArithExprVisitor extends ArithExprBaseVisitor<Integer> {
-		@Override
-		public Integer visitProg(ArithExprParser.ProgContext ctx) {
-			// 支持多条表达式语句，但只返回最有一条表达式语句的值作为求解结果
-			ArithExprParser.StmtContext lastStmt = ctx.stmt().getLast();
-			return visitStmt(lastStmt);
-		}
-
-
 		@Override
 		public Integer visitStmt(ArithExprParser.StmtContext ctx) {
 			if (ctx.expr() == null) {
