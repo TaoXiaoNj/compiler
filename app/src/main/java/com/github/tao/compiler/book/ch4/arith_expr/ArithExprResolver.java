@@ -19,6 +19,9 @@ public class ArithExprResolver {
 	}
 
 
+	/**
+	 * Visitor 实现，在访问每个规则节点时，它都可以得到一个返回值。
+	 * */
 	public static class ArithExprVisitor extends ArithExprBaseVisitor<Integer> {
 		@Override
 		public Integer visitProg(ArithExprParser.ProgContext ctx) {
@@ -50,7 +53,7 @@ public class ArithExprResolver {
 				return visitExpr(ctx.expr().getFirst());
 			}
 
-			// 现在，肯定是 + - * / % 这 5 种运算符的情况
+			// 现在，我们知道肯定是 + - * / % 这 5 种运算符的情况
 			int left = visitExpr(ctx.expr().getFirst());
 			int right = visitExpr(ctx.expr().getLast());
 
