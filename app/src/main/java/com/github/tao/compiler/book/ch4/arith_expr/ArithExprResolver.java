@@ -6,8 +6,8 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 public class ArithExprResolver {
-	public int resolve(String strProg) {
-		CharStream chars = CharStreams.fromString(strProg);
+	public int resolve(String statement) {
+		CharStream chars = CharStreams.fromString(statement);
 		ArithExprLexer lexer = new ArithExprLexer(chars);
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
 		ArithExprParser parser = new ArithExprParser(tokens);
