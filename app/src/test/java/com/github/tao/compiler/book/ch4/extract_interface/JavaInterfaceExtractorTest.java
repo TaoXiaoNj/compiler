@@ -13,7 +13,7 @@ class JavaInterfaceExtractorTest {
 				package com.github.haha;
 				    
 				import a.b.c.Hello;
-				import static x.y.z.*;
+				import static  x.y.z.*;
 				    
 				public class Driver {
 				    public void drive(/* 无参数 */) { }

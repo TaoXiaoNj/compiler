@@ -38,12 +38,12 @@ public class JavaInterfaceExtractor {
 		}
 
 		/**
-		 * 注意 tokenStream.getText(ctx) 与 ctx.getText() 是不同的
-		 * tokenStream.getText(ctx) 会返回与该规则节点对应的原始文本，包括分隔符
-		 * 而 ctx.getText() 则是把该规则节点对应的所有 token 文本直接返回，不包含分隔符
-		 * 例如，对于 "import a.b;" 这一句，
-		 * 前者会返回 "import a.b;"
-		 * 而后者会返回 "importa.b;"，空格丢失了
+		 * 注意 tokenStream.getText(ctx) 与 ctx.getText() 是不同的<p>
+		 * tokenStream.getText(ctx) 会返回与该规则节点对应的原始文本，包括分隔符<p>
+		 * 而 ctx.getText() 则是把该规则节点对应的所有 token 文本直接返回，不包含分隔符<p>
+		 * 例如，对于 "import static  x.y.z.*;" 这一句，<p>
+		 * 前者会返回 "import static  x.y.z.*;"，空格的个数都是原始的<p>
+		 * 而后者会返回 "importstaticx.y.z.*;"，空格丢失了<p>
 		 * */
 		@Override
 		public void enterPackageDeclaration(JavaParser.PackageDeclarationContext ctx) {
@@ -53,7 +53,7 @@ public class JavaInterfaceExtractor {
 
 		@Override
 		public void enterImportDeclaration(JavaParser.ImportDeclarationContext ctx) {
-			snippets.add(ctx.getText());
+			snippets.add(tokenStream.getText(ctx));
 		}
 	}
 }
