@@ -26,8 +26,8 @@ class JavaInterfaceExtractorTest {
 				        return new int[10];
 				    }
 				    
-				    List<Map<String, Object>>[] getHous() {
-				        log.info("查询停车时长);
+				    List<Map<String, Object>>[] getHours() {
+				        log.info("查询停车时长");
 				        return List.of();
 				    }
 				}""";
