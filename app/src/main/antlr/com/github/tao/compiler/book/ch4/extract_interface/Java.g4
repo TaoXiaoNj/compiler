@@ -3,6 +3,10 @@
 
 grammar Java;
 
+@header {
+    package com.github.tao.compiler.book.ch4.extract_interface;
+}
+
 /////////////////////////////////////////////////////////
 // 以下为词法规则
 
