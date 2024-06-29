@@ -55,5 +55,25 @@ public class JavaInterfaceExtractor {
 		public void enterImportDeclaration(JavaParser.ImportDeclarationContext ctx) {
 			snippets.add(tokenStream.getText(ctx));
 		}
+
+		@Override
+		public void enterClassDeclaration(JavaParser.ClassDeclarationContext ctx) {
+			String interfaceName = "I" + ctx.identifier().getText();
+			snippets.add("\ninterface " + interfaceName + " {");
+		}
+
+		@Override
+		public void exitClassDeclaration(JavaParser.ClassDeclarationContext ctx) {
+			snippets.add("}");
+		}
+
+		@Override
+		public void enterMethodDeclaration(JavaParser.MethodDeclarationContext ctx) {
+			snippets.add(
+					" " + ctx.typeTypeOrVoid().getText() + " " + ctx.identifier().getText() +
+							tokenStream.getText(ctx.formalParameters()) +
+							";"
+			);
+		}
 	}
 }

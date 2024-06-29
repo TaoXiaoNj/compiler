@@ -2,6 +2,7 @@ package com.github.tao.compiler.book.ch4.extract_interface;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
 class JavaInterfaceExtractorTest {
@@ -34,7 +35,20 @@ class JavaInterfaceExtractorTest {
 
 		String result = extractor.extract(input);
 
-		log.info("============================\n{}", result);
-		log.info("============================");
+		String expected = """
+				package com.github.haha;
+				import a.b.c.Hello;
+				import static  x.y.z.*;
+				    
+				interface IDriver {
+				 void drive(/* 无参数 */);
+				 int[] park(
+				        String place,  // 地段
+				        double price   // 停车价格
+				    );
+				 List<Map<String,Object>>[] getHours();
+				}""";
+
+		assertEquals(expected, result);
 	}
 }
