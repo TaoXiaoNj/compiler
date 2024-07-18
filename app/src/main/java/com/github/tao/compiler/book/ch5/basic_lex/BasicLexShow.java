@@ -12,20 +12,25 @@ import java.util.Scanner;
 
 
 /**
- * 运行方法：<p>
+ * 运行方法：
+ *
+ * <br><br>
  *
  * 先构建出 uber jar:
  * <pre>
  *   {@code ./gradlew clean build shadowJar}
  * </pre>
  *
- * <p>
+ * <br>
+ * <br>
  *
  * 然后，在普通的 terminal 内运行：
  * <pre>
  *   {@code java -cp app/build/libs/app-all.jar com.github.tao.compiler.book.ch5.basic_lex.BasicLexShow}
  * </pre>
  *
+ * <br><br>
+ * 不要在一些特别的终端（例如 IDEA 自带的终端）中运行，否则 {@link #readLines} 可能会异常。
  */
 @Slf4j
 public class BasicLexShow {
@@ -92,5 +97,7 @@ public class BasicLexShow {
 			String strText = ctx.STRING().getText();
 			System.out.println("识别出的 STRING 词法的 token 为\n" + strText);
 		}
+
+
 	}
 }
