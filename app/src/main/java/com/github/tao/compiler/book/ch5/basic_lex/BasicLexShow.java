@@ -70,19 +70,15 @@ public class BasicLexShow {
 		StringBuilder sb = new StringBuilder();
 		Scanner scanner = new Scanner(System.in);
 
-		while (true) {
+		boolean loop = true;
+		while (loop) {
 			try {
 				String line = scanner.nextLine();
-				sb.append(line + System.lineSeparator());
+				sb.append(line)
+						.append(System.lineSeparator());
 			} catch (NoSuchElementException ex) {
-				break;
+				loop = false;
 			}
-		}
-
-		// 当在新行遇到 CTRL + D 后，sb 会被插入一个 new line
-		// 这里我们需要把它去掉
-		if (!sb.isEmpty()) {
-			sb.deleteCharAt(sb.length() - 1);
 		}
 
 		return sb.toString();
@@ -94,8 +90,20 @@ public class BasicLexShow {
 	public static class MyBasicLexListener extends BasicLexBaseListener {
 		@Override
 		public void enterExpr(BasicLexParser.ExprContext ctx) {
-			String strText = ctx.STRING().getText();
-			System.out.println("识别出的 STRING 词法的 token 为\n" + strText);
+			if (ctx.STRING() != null) {
+				String strText = ctx.STRING().getText();
+				System.out.println("识别出的 STRING 词法的 token 为\n" + strText);
+			}
+
+			if (ctx.LINE_COMMENT() != null) {
+				String strText = ctx.LINE_COMMENT().getText();
+				System.out.println("识别出的 LINE_COMMENT 词法的 token 为\n" + strText);
+			}
+
+			if (ctx.BLOCK_COMMENT() != null) {
+				String strText = ctx.BLOCK_COMMENT().getText();
+				System.out.println("识别出的 BLOCK_COMMENT 词法的 token 为\n" + strText);
+			}
 		}
 
 
