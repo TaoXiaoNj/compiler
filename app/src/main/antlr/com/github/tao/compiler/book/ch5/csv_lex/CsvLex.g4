@@ -6,19 +6,24 @@ grammar CsvLex;
 
 // 换行符
 NL: '\r'? '\n';
+COMMA: ',' ;
 
-// 规定：必须存在 header
-
-// parser rules
 file: hdr (NL row)* ;
-hdr: row;
+hdr: row ;
 
-// 借助空的 cell，来实现空的一整行
-row: cell (',' cell)* ;
+// 支持“空”行
+row:
+    | cell (COMMA cell)*
+    ;
 
-// 单元格允许为空
-cell: TEXT
+// 单元格
+cell: QUOTED
+    | TEXT
     |
     ;
 
-TEXT: ~[,\n]+ ;
+// “普通的”单元格内容
+TEXT: ~[,\n"]+ ;
+
+// 允许含有逗号、换行符和转义双引号的单元格内容
+QUOTED: '"' ('""' | ~'"')* '"';
