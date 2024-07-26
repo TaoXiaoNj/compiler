@@ -57,3 +57,6 @@ fragment FRAC: DIGITS ;
 
 // 指数部分：非必须
 fragment EXP: [Ee] [+-]? DIGITS ;
+
+// 一定要定义空白符的词法，因为 JSON 文档中是允许 pair 之间被插入空白字符的
+WS: [ \r\n\t]+ -> skip;
