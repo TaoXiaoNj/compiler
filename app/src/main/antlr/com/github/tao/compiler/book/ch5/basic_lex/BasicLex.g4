@@ -10,10 +10,12 @@ grammar BasicLex;
 /// 字符串 //////////////////////
 // 注意： 不可以写成 STRING: '"' (.|ESC)*? '"' ;
 // 否则无法识别，因为这里我们需要强调转移字符 \" 有更高的优先级
-STRING: '"' (ESC | ~[\\"])*? '"' ;
+STRING: '"' (ESC | ~["\\])*? '"' ;
 
-// 转义字符 \"
-fragment ESC: '\\"';
+// 所有支持的转义字符
+fragment ESC: '\\' (["\\bfnrt] | UNICODE);
+fragment UNICODE: 'u' HEX HEX HEX HEX ;
+fragment HEX: [0-9A-Fa-f] ;
 
 
 //// 注释 /////////////////////
